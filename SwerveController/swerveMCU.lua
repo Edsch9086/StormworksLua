@@ -17,6 +17,8 @@ function onTick()
     local modeCoast = property.getBool("Coast Mode")
     local worldCentric = property.getBool("World/Robot Centric")
     local resetGyro = property.getBool(1)
+	local softBrake = property.getBool(2)
+	local hardBrake = property.getBool(3)
 
     if worldCentric == true then -- world/field centric control
 		xVel, yVel = orient(xDir, yDir, worldYaw, resetGyro)
@@ -43,20 +45,32 @@ function onTick()
         s4 = s4/maxSpeed
     end
 
-	local b1 --declare brake values
-	local b2
-	local b3
-	local b4
+	local brake
+
+	if modeCoast == false then
+		if xVel <= 0.1 or yVel <= 0.1 then
+			brake = 1
+		else 
+			brake = 0
+		end
+	end
+
+	if softbrake then
+	
+	if hardBrake then
+		brake = 1
+		a1 = 135
+		a2 = 225
+		a3 = 45
+		a4 = 315
+	end
 
     output.setNumber(1, s1) -- speed encode
     output.setNumber(2, s2)
     output.setNumber(3, s3)
     output.setNumber(4, s4)
 	
-	output.setNumber(5, b1) -- brake encode
-	output.setNumber(6, b2)
-	output.setNumber(7, b3)
-	output.setNumber(8, b4)
+	output.setNumber(5, brake) -- brake encode
 	
     output.setNumber(11, a1) -- angle encode
     output.setNumber(12, a2)
@@ -95,6 +109,7 @@ function angle(X, Y)
     return math.atan(X,Y)*180/math.pi
 end
 ]]
+
 
 
 
