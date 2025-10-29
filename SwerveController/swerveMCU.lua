@@ -1,13 +1,17 @@
+local length = property.getNumber("Chassis Length")
+local width = property.getNumber("Chassis Width")
+local driveMultiplier = property.getNumber("Drive Multiplier")
+local steeringMultiplier = property.getNumber("Steering Multiplier")
+
 function onTick()
-	modeCoast = property.getBool("Coast Mode")
-	worldCentric = property.getBool("World/Robot Centric")
-    resetGyro = property.getbool(1)
-    yDir = input.getNumber(1) * property.getNumber("Drive Multiplier")
-    xDir = input.getNumber(2) * property.getNumber("Drive Multiplier")
-    rotation = input.getNumber(3) * property.getNumber("Steering Multiplier") * 0.1
-    compass = input.getNumber(4) -- range: +-0.5, 0 = 0*, 0.25 = +90, -0.25 = 270, |+-0.5| = 180
-    length = property.getNumber("Chassis Length")
-    width = property.getNumber("Chassis Width")
+    local yDir = input.getNumber(1) * driveMultiplier
+    local xDir = input.getNumber(2) * driveMultiplier
+    local rotation = input.getNumber(3) * steeringMultiplier * 0.1
+    local compass = input.getNumber(4)
+    local modeCoast = property.getBool("Coast Mode")
+    local worldCentric = property.getBool("World/Robot Centric")
+    local resetGyro = property.getBool(1)
+
 
     if worldCentric = true then -- 
 		
@@ -22,10 +26,10 @@ function onTick()
     local C = yVel - (rotation*width)/2
     local D = yVel + (rotation*width)/2
 
-    local s1 = select(1, Calc(B,C)) -- speed compensate > 1
-    local s2 = select(1, Calc(B,D))
-    local s3 = select(1, Calc(A,D))
-    local s4 = select(1, Calc(A,C))
+    local s1, a1 = calculateWheel(B, C) -- grab angle, compensate speed if > 1
+    local s2, a2 = calculateWheel(B, D)
+    local s3, a3 = calculateWheel(A, D)
+    local s4, a4 = calculateWheel(A, C)
     local maxSpeed = math.max(s1, s2, s3, s4)
 
     if maxSpeed > 1 then
@@ -39,10 +43,10 @@ function onTick()
     output.setNumber(2, s2)
     output.setNumber(3, s3)
     output.setNumber(4, s4)
-    output.setNumber(11, select(2, Calc(B,C))) -- angle encode
-    output.setNumber(12, select(2, Calc(B,D)))
-    output.setNumber(13, select(2, Calc(A,D)))
-    output.setNumber(14, select(2, Calc(A,C)))
+    output.setNumber(11, a1) -- angle encode
+    output.setNumber(12, a2)
+    output.setNumber(13, a3)
+    output.setNumber(14, a4)
 end
 
 function Calc(X,Y)
@@ -64,6 +68,7 @@ function angle(X, Y)
     return math.atan(X,Y)*180/math.pi
 end
 ]]
+
 
 
 
