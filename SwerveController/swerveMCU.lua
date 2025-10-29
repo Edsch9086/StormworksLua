@@ -3,24 +3,28 @@ local width = property.getNumber("Chassis Width")
 local driveMultiplier = property.getNumber("Drive Multiplier")
 local steeringMultiplier = property.getNumber("Steering Multiplier")
 
+
 function onTick()
     local yDir = input.getNumber(1) * driveMultiplier
     local xDir = input.getNumber(2) * driveMultiplier
     local rotation = input.getNumber(3) * steeringMultiplier * 0.1
-    local compass = input.getNumber(4)
+    local worldYaw = input.getNumber(4)
+	-- local worldX = input.getNumber(5)
+	-- local worldY = input.getNumber(6)
+	-- local roll = input.getNumber(7)
+	-- local pitch = input.getnumber(8)
     local modeCoast = property.getBool("Coast Mode")
     local worldCentric = property.getBool("World/Robot Centric")
     local resetGyro = property.getBool(1)
 
 
-    if worldCentric = true then -- 
+    if worldCentric = true then -- world/field centric control
 		
     else 
-        local xVel = xDir
+        xVel = xDir
         yVel = yDir
     end
 	
-
     local A = xVel - (rotation*length)/2
     local B = xVel + (rotation*length)/2
     local C = yVel - (rotation*width)/2
@@ -49,13 +53,13 @@ function onTick()
     output.setNumber(14, a4)
 end
 
-function Calc(X,Y)
+function calculateWheel(X, Y)
 	local speed = math.sqrt(X^2 + Y^2)
 	local angle = math.atan(X, Y)*180/math.pi
 	return speed, angle
 end
 
-function orient(xDir, yDir, resetGyro)
+function orient(xDir, yDir, resetGyro, compass)
 
 end
 
@@ -68,6 +72,7 @@ function angle(X, Y)
     return math.atan(X,Y)*180/math.pi
 end
 ]]
+
 
 
 
