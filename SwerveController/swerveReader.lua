@@ -1,5 +1,7 @@
+local module = property.getNumber("Module ID")
+
 function math.clamp(val, lower, upper)
-    return math.min(math.max(val, min), max)
+    return math.min(math.max(val, lower), upper)
 end
 
 buffer = 0
@@ -7,17 +9,13 @@ endval = 0
 inc = 0
 
 function onTick()
-    module = property.getNumber("Module ID")
-    speed = input.getNumber(module)
-    target = input.getNumber(module + 10) / 180
-    brake = input.getNumber(5)
+    local speed = input.getNumber(module)
+    local target = input.getNumber(module + 10) / 180
+    local brake = input.getNumber(5)
     lastTarget = endval * 2
     
-    delta = target - lastTarget
-    
-    while delta > 1 do delta = delta - 2 end
-    while delta < -1 do delta = delta + 2 end
-    
+    local delta = ((target - lastTarget + 1) % 2) - 1
+
     if delta > 0.5 then
         delta = delta - 1
         speed = -speed
@@ -26,8 +24,8 @@ function onTick()
         speed = -speed
     end
     
-    optimizedTarget = lastTarget + delta
-    value = optimizedTarget * 0.5
+    local optimizedTarget = lastTarget + delta
+    local value = optimizedTarget * 0.5
     
     if value ~= buffer then
         inc = value - endval
