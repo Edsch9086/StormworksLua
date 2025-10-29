@@ -9,23 +9,24 @@ function onTick()
     length = property.getNumber("Chassis Length")
     width = property.getNumber("Chassis Width")
 
-    if worldCentric = true then
-
+    if worldCentric = true then -- 
+		
     else 
-        xVel = xDir
+        local xVel = xDir
         yVel = yDir
     end
+	
 
-    A = xVel - (rotation*length)/2
-    B = xVel + (rotation*length)/2
-    C = yVel - (rotation*width)/2
-    D = yVel + (rotation*width)/2
+    local A = xVel - (rotation*length)/2
+    local B = xVel + (rotation*length)/2
+    local C = yVel - (rotation*width)/2
+    local D = yVel + (rotation*width)/2
 
-    s1 = select(1, Calc(B,C))
-    s2 = select(1, Calc(B, D))
-    s3 = select(1, Calc(A, D))
-    s4 = select(1, Calc(A, C))
-    maxSpeed = math.max(s1, s2, s3, s4)
+    local s1 = select(1, Calc(B,C)) -- speed compensate > 1
+    local s2 = select(1, Calc(B,D))
+    local s3 = select(1, Calc(A,D))
+    local s4 = select(1, Calc(A,C))
+    local maxSpeed = math.max(s1, s2, s3, s4)
 
     if maxSpeed > 1 then
         s1 = s1/maxSpeed
@@ -45,9 +46,13 @@ function onTick()
 end
 
 function Calc(X,Y)
-	speed = math.sqrt(X^2, Y^2)
-	angle = math.atan(X, Y)*180/math.pi
+	local speed = math.sqrt(X^2 + Y^2)
+	local angle = math.atan(X, Y)*180/math.pi
 	return speed, angle
+end
+
+function orient(xDir, yDir, resetGyro)
+
 end
 
 --[[ old speed/angle ()
@@ -59,6 +64,7 @@ function angle(X, Y)
     return math.atan(X,Y)*180/math.pi
 end
 ]]
+
 
 
 
