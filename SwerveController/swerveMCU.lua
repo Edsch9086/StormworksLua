@@ -21,10 +21,10 @@ function onTick()
     C = yVel - (rotation*width)/2
     D = yVel + (rotation*width)/2
 
-    s1 = speed(B, C)
-    s2 = speed(B, D)
-    s3 = speed(A, D)
-    s4 = speed(A, C)
+    s1 = select(1, Calc(B,C))
+    s2 = select(1, Calc(B, D))
+    s3 = select(1, Calc(A, D))
+    s4 = select(1, Calc(A, C))
     maxSpeed = math.max(s1, s2, s3, s4)
 
     if maxSpeed > 1 then
@@ -38,13 +38,19 @@ function onTick()
     output.setNumber(2, s2)
     output.setNumber(3, s3)
     output.setNumber(4, s4)
-    output.setNumber(11, angle(B,C)) -- angle encode
-    output.setNumber(12, angle(B,D))
-    output.setNumber(13, angle(A,D))
-    output.setNumber(14, angle(A,C))
+    output.setNumber(11, select(2, Calc(B,C))) -- angle encode
+    output.setNumber(12, select(2, Calc(B,D)))
+    output.setNumber(13, select(2, Calc(A,D)))
+    output.setNumber(14, select(2, Calc(A,C)))
 end
 
--- speed/angle
+function Calc(X,Y)
+	speed = math.sqrt(X^2, Y^2)
+	angle = math.atan(X, Y)*180/math.pi
+	return speed, angle
+end
+
+--[[ old speed/angle ()
 function speed(X, Y)
     return math.sqrt(X^2 + Y^2)
 end
@@ -52,6 +58,7 @@ end
 function angle(X, Y)
     return math.atan(X,Y)*180/math.pi
 end
+]]
 
 
 
