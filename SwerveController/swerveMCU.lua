@@ -30,23 +30,34 @@ function onTick()
     local C = yVel - (rotation*width)/2
     local D = yVel + (rotation*width)/2
 
-    local s1, a1 = calculateWheel(B, C) -- grab angle, compensate speed if > 1
+    local s1, a1 = calculateWheel(B, C) -- get angle, speed
     local s2, a2 = calculateWheel(B, D)
     local s3, a3 = calculateWheel(A, D)
     local s4, a4 = calculateWheel(A, C)
-    local maxSpeed = math.max(s1, s2, s3, s4)
-
-    if maxSpeed > 1 then
+	
+    local maxSpeed = math.max(s1, s2, s3, s4) -- compensate if max speed > 1
+	if maxSpeed > 1 then
         s1 = s1/maxSpeed
         s2 = s2/maxSpeed
         s3 = s3/maxSpeed
         s4 = s4/maxSpeed
     end
 
+	local b1 --declare brake values
+	local b2
+	local b3
+	local b4
+
     output.setNumber(1, s1) -- speed encode
     output.setNumber(2, s2)
     output.setNumber(3, s3)
     output.setNumber(4, s4)
+	
+	output.setNumber(5, b1) -- brake encode
+	output.setNumber(6, b2)
+	output.setNumber(7, b3)
+	output.setNumber(8, b4)
+	
     output.setNumber(11, a1) -- angle encode
     output.setNumber(12, a2)
     output.setNumber(13, a3)
@@ -84,6 +95,7 @@ function angle(X, Y)
     return math.atan(X,Y)*180/math.pi
 end
 ]]
+
 
 
 
