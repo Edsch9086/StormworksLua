@@ -11,7 +11,7 @@ function onTick()
     module = property.getNumber("Module ID")
     speed = input.getNumber(module)
     target = input.getNumber(module + 10) / 180
-    brake = input.getNumber(module + 4)
+    brake = input.getNumber(5)
     lastTarget = endval * 2
     
     delta = target - lastTarget
