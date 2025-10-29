@@ -1,12 +1,20 @@
 function onTick()
 	modeCoast = property.getBool("Coast Mode")
 	worldCentric = property.getBool("World/Robot Centric")
-    yVel = input.getNumber(1) * property.getNumber("Drive Multiplier")
-    xVel = input.getNumber(2) * property.getNumber("Drive Multiplier")
+    resetGyro = property.getbool(1)
+    yDir = input.getNumber(1) * property.getNumber("Drive Multiplier")
+    xDir = input.getNumber(2) * property.getNumber("Drive Multiplier")
     rotation = input.getNumber(3) * property.getNumber("Steering Multiplier") * 0.1
     compass = input.getNumber(4) -- range: +-0.5, 0 = 0*, 0.25 = +90, -0.25 = 270, |+-0.5| = 180
     length = property.getNumber("Chassis Length")
     width = property.getNumber("Chassis Width")
+
+    if worldCentric = true then
+
+    else 
+        xVel = xDir
+        yVel = yDir
+    end
 
     A = xVel - (rotation*length)/2
     B = xVel + (rotation*length)/2
