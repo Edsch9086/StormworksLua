@@ -56,7 +56,9 @@ function onTick()
 	end
 
 	if softbrake then
-	
+		brake = 1
+	end
+		
 	if hardBrake then
 		brake = 1
 		a1 = 135
@@ -109,6 +111,7 @@ function angle(X, Y)
     return math.atan(X,Y)*180/math.pi
 end
 ]]
+
 
 
 
