@@ -57,16 +57,14 @@ function onTick()
 
 	if softbrake then
 		brake = 1
-	end
-		
-	if hardBrake then
+	else if hardBrake then
 		brake = 1
 		a1 = 135
 		a2 = 225
 		a3 = 45
 		a4 = 315
 	end
-
+		
     output.setNumber(1, s1) -- speed encode
     output.setNumber(2, s2)
     output.setNumber(3, s3)
@@ -111,6 +109,7 @@ function angle(X, Y)
     return math.atan(X,Y)*180/math.pi
 end
 ]]
+
 
 
 
