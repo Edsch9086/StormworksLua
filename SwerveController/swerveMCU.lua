@@ -42,11 +42,11 @@ function onTick()
 	-- rotate to aim at point
 	local brake = 0
 	if aimAtCoord == true then 
-   	 rotation, brake = calculateAimRotation(worldX, worldY, worldYaw, reqX, reqY)
+   	 rotation, brake = calcAim(worldX, worldY, worldYaw, reqX, reqY)
 	end
 	
 	-- translate to point
-	if moveToCoord == true then
+	if moveConfirm == true then
 	    xVel, yVel, brake = TRANS(worldX, worldY, worldYaw, reqX, reqY, worldCentric)
 	end
 
@@ -135,7 +135,7 @@ function calcAim(worldX, worldY, worldYaw, reqX, reqY)
     local currentYaw = worldYaw * math.pi -- radians
     local deltaX = reqX - worldX
     local deltaY = reqY - worldY
-    local targetAngle = math.atan2(deltaY, deltaX)
+    local targetAngle = math.atan(deltaY, deltaX)
     local angleError = targetAngle - currentYaw
 	local brake = 0
     
