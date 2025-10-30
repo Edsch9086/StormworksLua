@@ -195,7 +195,3 @@ function TRANS(worldX, worldY, worldYaw, reqX, reqY, worldCentric)
 	
     return xVel, yVel, brake
 end
-
-
-
-
