@@ -14,11 +14,17 @@ function onTick()
 	-- local pitch = input.getnumber(8)
 	-- local rotSpeed = input.getNumber(9)
 	-- local linSpeed = input.getNumber(10)
+	-- local reqX = input.getNumber(11)
+	-- local reqY = input.getNumber(12)
+	-- local moveX = input.getNumber(13)
+	-- local moveY = input.getNumber(14)
     local modeCoast = property.getBool("Coast Mode")
     local worldCentric = property.getBool("World/Robot Centric")
     local resetGyro = input.getBool(1)
 	local softBrake = input.getBool(2)
 	local hardBrake = input.getBool(3)
+	-- local moveConfirm = input.getBool(4)
+	-- local lookAtPoint = input.getBool(5)
 
     if worldCentric == true then -- world/field centric control
 		xVel, yVel = orient(xDir, yDir, worldYaw, resetGyro)
@@ -26,6 +32,8 @@ function onTick()
         xVel = xDir
         yVel = yDir
     end
+
+	
 	
     local A = xVel - (rotation*length)/2 -- define wheel vector locations
     local B = xVel + (rotation*length)/2
@@ -96,4 +104,5 @@ function orient(xDir, yDir, worldYaw, resetGyro)
     local xVel = xDir * math.cos(yaw_rad) - yDir * math.sin(yaw_rad)
     local yVel = xDir * math.sin(yaw_rad) + yDir * math.cos(yaw_rad)
     return xVel, yVel
+
 end
