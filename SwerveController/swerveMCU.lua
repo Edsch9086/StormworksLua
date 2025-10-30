@@ -62,7 +62,7 @@ function onTick()
     local s3, a3 = calculateWheel(A, D)
     local s4, a4 = calculateWheel(A, C)
 
-	-- compensate if max speed > 1
+	-- compensate if max motor speed > 1
     local maxSpeed = math.max(s1, s2, s3, s4) 
 	if maxSpeed > 1 then
         s1 = s1/maxSpeed
@@ -195,6 +195,7 @@ function TRANS(worldX, worldY, worldYaw, reqX, reqY, worldCentric)
 	
     return xVel, yVel, brake
 end
+
 
 
 
