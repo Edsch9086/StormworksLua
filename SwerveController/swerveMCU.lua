@@ -16,9 +16,9 @@ function onTick()
 	-- local linSpeed = input.getNumber(10)
     local modeCoast = property.getBool("Coast Mode")
     local worldCentric = property.getBool("World/Robot Centric")
-    local resetGyro = property.getBool(1)
-	local softBrake = property.getBool(2)
-	local hardBrake = property.getBool(3)
+    local resetGyro = input.getBool(1)
+	local softBrake = input.getBool(2)
+	local hardBrake = input.getBool(3)
 
     if worldCentric == true then -- world/field centric control
 		xVel, yVel = orient(xDir, yDir, worldYaw, resetGyro)
@@ -45,22 +45,22 @@ function onTick()
         s4 = s4/maxSpeed
     end
 
-	local brake
+	local brake = 0
 
 	if modeCoast == false then
-		if xVel <= 0.1 or yVel <= 0.1 then
+		if math.abs(xVel) <= 0.1 and math.abs(yVel) <= 0.1 and math.abs(input.getNumber(3)) <= 0.1 then
 			brake = 1
 		else 
 			brake = 0
 		end
 	end
 
-	if softbrake then
+	if softBrake == true then
 		brake = 1
-	else if hardBrake then
+	elseif hardBrake == true then
 		brake = 1
-		a1 = 135
-		a2 = 225
+		a1 = 225
+		a2 = 135
 		a3 = 45
 		a4 = 315
 	end
@@ -85,16 +85,14 @@ function calculateWheel(X, Y)
 end
 
 local gyroOffset = 0
-function orient(xDir, yDir, resetGyro, worldYaw)
+function orient(xDir, yDir, worldYaw, resetGyro)
     if resetGyro then
         gyroOffset = worldYaw
     end
-	
     local zeroedYaw = worldYaw - gyroOffset
     if zeroedYaw > 0.5 then zeroedYaw = zeroedYaw - 1 end
     if zeroedYaw < -0.5 then zeroedYaw = zeroedYaw + 1 end
-	
-    local yaw_rad = zeroedYaw * math.pi
+    local yaw_rad = -zeroedYaw * 2 * math.pi  -- negative here
     local xVel = xDir * math.cos(yaw_rad) - yDir * math.sin(yaw_rad)
     local yVel = xDir * math.sin(yaw_rad) + yDir * math.cos(yaw_rad)
     return xVel, yVel
@@ -109,15 +107,3 @@ function angle(X, Y)
     return math.atan(X,Y)*180/math.pi
 end
 ]]
-
-
-
-
-
-
-
-
-
-
-
-
