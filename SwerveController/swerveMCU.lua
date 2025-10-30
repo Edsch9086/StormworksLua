@@ -130,7 +130,8 @@ function orient(xDir, yDir, worldYaw, resetGyro)
 
 end
 
-function calcAim(worldX, worldY, worldYaw, reqX, reqY) -- move front of chassis to point at req x, y
+ -- aim front of chassis towards target x, y (reqX, reqY)
+function calcAim(worldX, worldY, worldYaw, reqX, reqY)
     local currentYaw = worldYaw * math.pi -- radians
     local deltaX = reqX - worldX
     local deltaY = reqY - worldY
@@ -194,5 +195,6 @@ function TRANS(worldX, worldY, worldYaw, reqX, reqY, worldCentric)
 	
     return xVel, yVel, brake
 end
+
 
 
