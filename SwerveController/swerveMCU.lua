@@ -97,13 +97,3 @@ function orient(xDir, yDir, worldYaw, resetGyro)
     local yVel = xDir * math.sin(yaw_rad) + yDir * math.cos(yaw_rad)
     return xVel, yVel
 end
-
---[[ old speed/angle ()
-function speed(X, Y)
-    return math.sqrt(X^2 + Y^2)
-end
-
-function angle(X, Y)
-    return math.atan(X,Y)*180/math.pi
-end
-]]

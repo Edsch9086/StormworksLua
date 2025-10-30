@@ -1,10 +1,10 @@
 {
     "lifeboatapi.stormworks.isMicrocontrollerProject": true,
     "Lua.workspace.library": [
-        "/home/edsch/Documents/MXCI-018/Stormworks/Microcontrollers/StormworksLua/SwerveController/",
-        "/home/edsch/.var/app/com.visualstudio.code/data/vscode/extensions/nameouschangey.lifeboatapi-0.0.33/assets/lua/Common/",
-        "/home/edsch/.var/app/com.visualstudio.code/data/vscode/extensions/nameouschangey.lifeboatapi-0.0.33/assets/lua/Microcontroller/",
-        "/home/edsch/Documents/MXCI-018/Stormworks/Microcontrollers/StormworksLua/SwerveController/_build/libs/"
+        "c:/Users/edsch975/Documents/StormworksLua/SwerveController/",
+        "c:/Users/edsch975/.vscode/extensions/nameouschangey.lifeboatapi-0.0.33/assets/lua/Common/",
+        "c:/Users/edsch975/.vscode/extensions/nameouschangey.lifeboatapi-0.0.33/assets/lua/Microcontroller/",
+        "c:/Users/edsch975/Documents/StormworksLua/SwerveController/_build/libs/"
     ],
     "lifeboatapi.stormworks.libs.gitLibraries": [
         {
