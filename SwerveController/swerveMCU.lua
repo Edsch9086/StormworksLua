@@ -16,8 +16,6 @@ function onTick()
 	-- local linSpeed = input.getNumber(10)
 	-- local reqX = input.getNumber(11)
 	-- local reqY = input.getNumber(12)
-	-- local moveX = input.getNumber(13)
-	-- local moveY = input.getNumber(14)
     local modeCoast = property.getBool("Coast Mode")
     local worldCentric = property.getBool("World/Robot Centric")
     local resetGyro = input.getBool(1)
@@ -106,3 +104,4 @@ function orient(xDir, yDir, worldYaw, resetGyro)
     return xVel, yVel
 
 end
+
