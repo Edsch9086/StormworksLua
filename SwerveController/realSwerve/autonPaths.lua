@@ -1,23 +1,29 @@
+currentWaypoint = currentWaypoint or 1
 function onTick()
-    -- did the chassis reach the last auton waypoint?
+    -- get wp values
+    local waypoints = {
+        {input.getNumber(1), input.getNumber(2)},
+        {input.getNumber(3), input.getNumber(4)},
+        {input.getNumber(5), input.getNumber(6)},
+        {input.getNumber(7), input.getNumber(8)},
+        {input.getNumber(9), input.getNumber(10)},
+    }
+
+    -- check if chassis is at last wp
     local wpAchv = input.getBool(1)
 
-    -- wp coord list
-    local x1 = getBool(1)
-    local y1 = getBool(2)
-    local x2 = getBool(3)
-    local y2 = getBool(4)
-    local x3 = getBool(5)
-    local y3 = getBool(6)
-    local x4 = getBool(7)
-    local y4 = getBool(8)
-    local x5 = getBool(9)
-    local x5 = getBool(10)
+    -- only switch wp when wpAchv switches to true
+    prevWpAchv = prevWpAchv or false
+    if wpAchv and not prevWpAchv then
+        currentWaypoint = currentWaypoint + 1
+        if currentWaypoint > #waypoints then
+            currentWaypoint = #waypoints -- or 1 for wp loop (demonstrate)
+        end
+    end
+    prevWpAchv = wpAchv
 
-    -- wp target
-    local targX = 0
-    local targY = 0
-
-    output.setNumber(1, targX)
-    output.setNumber(2, targY)
+    -- Output the target waypoint
+    local wp = waypoints[currentWaypoint]
+    output.setNumber(1, wp[1])
+    output.setNumber(2, wp[2])
 end
