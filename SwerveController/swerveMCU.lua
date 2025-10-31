@@ -30,6 +30,10 @@ function onTick()
     local resetGyro = input.getBool(1) 
 	local softBrake = input.getBool(2)
 	local hardBrake = input.getBool(3)
+ 
+    -- misc vars
+    local xVel = 0
+    local yVel = 0
 
 	-- world/field centric control
     if worldCentric == true then 
@@ -140,7 +144,7 @@ function calcAim(worldX, worldY, worldYaw, reqX, reqY)
 	local brake = 0
     
     angleError = (angleError + math.pi) % (2 * math.pi) - math.pi
-    local kP = 2.0 -- tune if oscillations
+    local kP = 2.0 -- tune if oscillations present
     local rotation = angleError * kP
 	
     if rotation > 1 then rotation = 1 end
