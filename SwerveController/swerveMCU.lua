@@ -109,6 +109,8 @@ function onTick()
     output.setNumber(12, a2)
     output.setNumber(13, a3)
     output.setNumber(14, a4)
+
+    output.setBool(1, wp)
 end
 
 -- wheel speed and angle
@@ -161,6 +163,8 @@ end
 function TRANS(worldX, worldY, worldYaw, reqX, reqY, worldCentric)
     local deltaX = reqX - worldX -- needed translation amount
     local deltaY = reqY - worldY
+
+    local achv = false -- is it at the wp?? 
 	
     local distance = math.sqrt(deltaX^2 + deltaY^2)
     local maxSpeed = 1.0
@@ -195,7 +199,8 @@ function TRANS(worldX, worldY, worldYaw, reqX, reqY, worldCentric)
         xVel = 0
         yVel = 0
 		brake = 1
+        achv = true
     end
 	
-    return xVel, yVel, brake
+    return xVel, yVel, brake, achv
 end
