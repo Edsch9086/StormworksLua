@@ -34,6 +34,7 @@ function onTick()
     -- misc vars
     local xVel = 0
     local yVel = 0
+    local wpAchv
 
 	-- world/field centric control
     if worldCentric == true then 
@@ -51,7 +52,7 @@ function onTick()
 	
 	-- translate to point
 	if moveConfirm == true then
-	    xVel, yVel, brake = TRANS(worldX, worldY, worldYaw, reqX, reqY, worldCentric)
+	    xVel, yVel, brake, wpAchv = TRANS(worldX, worldY, worldYaw, reqX, reqY, worldCentric)
 	end
 
 	-- define wheel vector locations
@@ -110,7 +111,8 @@ function onTick()
     output.setNumber(13, a3)
     output.setNumber(14, a4)
 
-    output.setBool(1, wp)
+    -- wp acheive encode, for auton
+    output.setBool(1, wpAchv)
 end
 
 -- wheel speed and angle
