@@ -143,7 +143,7 @@ end
 
  -- aim front of chassis towards target x, y (reqX, reqY)
 function calcAim(worldX, worldY, worldYaw, reqX, reqY)
-    local currentYaw = worldYaw * math.pi -- radians
+    local currentYaw = worldYaw * 2 * math.pi -- radians
     local deltaX = reqX - worldX
     local deltaY = reqY - worldY
     local targetAngle = math.atan(deltaY, deltaX)
@@ -183,7 +183,7 @@ function TRANS(worldX, worldY, worldYaw, reqX, reqY, worldCentric)
     local xVel, yVel
 	-- correct movement if worldcentric
     if worldCentric then 
-        local yaw = worldYaw * math.pi
+        local yaw = worldYaw * 2 * math.pi
         local cosYaw = math.cos(-yaw)
         local sinYaw = math.sin(-yaw)
         xVel = deltaX * cosYaw - deltaY * sinYaw
