@@ -4,15 +4,15 @@ function math.clamp(val, lower, upper)
     return math.min(math.max(val, lower), upper)
 end
 
-buffer = 0
-endval = 0
-inc = 0
+targetBuffer = 0
+outputRotation = 0
+angleIncrement = 0
 
 function onTick()
     local speed = input.getNumber(module)
     local target = input.getNumber(module + 10) / 180
     local brake = input.getNumber(5)
-    lastTarget = endval * 2
+    lastTarget = outputRotation * 2
     
     local delta = ((target - lastTarget + 1) % 2) - 1
 
@@ -27,14 +27,14 @@ function onTick()
     local optimizedTarget = lastTarget + delta
     local value = optimizedTarget * 0.5
     
-    if value ~= buffer then
-        inc = value - endval
-        buffer = value
+    if value ~= targetBuffer then
+        angleIncrement = value - outputRotation
+        targetBuffer = value
     end
     
-    endval = math.clamp(endval + inc, endval, value)
+    outputRotation = math.clamp(outputRotation + angleIncrement, outputRotation, value)
     
-    output.setNumber(1, endval)
+    output.setNumber(1, outputRotation)
     output.setNumber(2, speed)
     output.setNumber(3, brake)
 end

@@ -4,6 +4,8 @@ local driveMultiplier = property.getNumber("Drive Multiplier")
 local steeringMultiplier = property.getNumber("Steering Multiplier")
 local modeCoast = property.getBool("Coast Mode")
 local worldCentric = property.getBool("World/Robot Centric")
+local rotTolerance = property.getNumber("Rotation Tolerance")
+local transTolerance = property.getNumber("Translation Tolerance")
 
 function onTick()
 	-- control inputs
@@ -154,7 +156,7 @@ function calcAim(worldX, worldY, worldYaw, reqX, reqY)
     if rotation > 1 then rotation = 1 end
     if rotation < -1 then rotation = -1 end
     
-    if math.abs(angleError) < 0.03 then
+    if math.abs(angleError) < rotTolerance then
         rotation = 0
 		brake = 1
     end
@@ -170,6 +172,7 @@ function TRANS(worldX, worldY, worldYaw, reqX, reqY, worldCentric)
 	
     local distance = math.sqrt(deltaX^2 + deltaY^2)
     local maxSpeed = 1.0
+    local brake = 0
 
     if distance > 0 then
         deltaX = deltaX / distance * math.min(distance, maxSpeed)
@@ -197,7 +200,7 @@ function TRANS(worldX, worldY, worldYaw, reqX, reqY, worldCentric)
 	end
 
 	-- stop within x meters of target
-    if distance < 0.2 then 
+    if distance < transTolerance then 
         xVel = 0
         yVel = 0
 		brake = 1
