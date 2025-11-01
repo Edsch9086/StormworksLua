@@ -32,7 +32,7 @@ function onTick()
         targetBuffer = value
     end
     
-    outputRotation = math.clamp(outputRotation + angleIncrement, outputRotation, value)
+    outputRotation = math.clamp(outputRotation + angleIncrement, math.min(outputRotation, value), math.max(outputRotation, value))
     
     output.setNumber(1, outputRotation)
     output.setNumber(2, speed)

@@ -36,14 +36,23 @@ function onTick()
     -- misc vars
     local xVel = 0
     local yVel = 0
-    local wpAchv
-
+    local wpAchv = false
+    
 	-- world/field centric control
     if worldCentric == true then 
 		xVel, yVel = orient(xDir, yDir, worldYaw, resetGyro)
     else 
         xVel = xDir
         yVel = yDir
+    end
+
+    -- brake when input released if coast mode inactive
+    if modeCoast == false then 
+        if math.abs(xVel) <= 0.1 and math.abs(yVel) <= 0.1 and math.abs(input.getNumber(3)) <= 0.1 then
+            brake = 1
+        else 
+            brake = 0
+        end
     end
 	
 	-- rotate to aim at point
@@ -78,14 +87,6 @@ function onTick()
         s4 = s4/maxSpeed
     end
 
-	-- brake when input released if coast mode inactive
-	if modeCoast == false then 
-		if math.abs(xVel) <= 0.1 and math.abs(yVel) <= 0.1 and math.abs(input.getNumber(3)) <= 0.1 then
-			brake = 1
-		else 
-			brake = 0
-		end
-	end
 
 	-- brakes (including wheel X lockup)
 	if softBrake == true then -- wheel brake only
