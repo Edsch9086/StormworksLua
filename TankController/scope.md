@@ -25,7 +25,7 @@
     - fast response time
     - stable at high speeds 
 
-### be viable for use in stormworks
+### - be viable for use in stormworks
 - lightweight on resources
 
 - polished enough to upload to steam workshop
