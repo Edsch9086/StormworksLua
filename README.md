@@ -3,7 +3,7 @@ ___
 
 ### Intent:
 
-The intent of these scripts and microcontrollers is to provide a set of efficient, easy to set up and customize, performance-conscious, and intuitive controllers for some common and not-so-common drivetrain and mechanisms for vehicles in Stormworks
+The intent of these scripts and microcontrollers is to provide a set of efficient, easy to set up and customize, performance-conscious, and intuitive controllers for some common and not-so-common drivetrains and mechanisms for vehicles in Stormworks
 
 ### Projects:
 
@@ -13,7 +13,7 @@ Current projects that are being worked on/are planned to be worked on are:
     - nearly done, need to iron out waypoint logic
 
 - Tank Drive Controller
-    - nearly done, need to add speed/rot limiters + advanced stab
+    - nearly done, need to add speed/rot limiters
 
 - Typical wheeled vehicle controller
     - not started yet

@@ -15,7 +15,6 @@
 - easy config in controller properties
     - max speed (km/h)
     - max rotation velocity (rads/second)
-    - engine type (jet/prebuilt diesel) -- test pb diesel with modular
     - max engine rps
 
 
@@ -24,6 +23,7 @@
     - neutral steering
     - fast response time
     - stable at high speeds 
+        - you can just build a competent vehicle for that
 
 - handles naturally, as one would expect a tank drive to handle
 
