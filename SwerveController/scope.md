@@ -19,6 +19,6 @@
 - reverse wheel speed if needed 
 
 ### - viable for use in stormworks
-- be lightweight on resources
+- lightweight on resources
 
-- be polished enough to upld to steam workshop
+- polished enough to upload to steam workshop
