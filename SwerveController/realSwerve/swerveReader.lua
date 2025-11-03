@@ -1,4 +1,5 @@
 local module = property.getNumber("Module ID")
+local doWheelReverse = property.getBool("Enable Wheel Reverse")
 
 function math.clamp(val, lower, upper)
     return math.min(math.max(val, lower), upper)
@@ -12,16 +13,20 @@ function onTick()
     local speed = input.getNumber(module)
     local target = input.getNumber(module + 10) / 180
     local brake = input.getNumber(5)
-    lastTarget = outputRotation * 2
+    local lastTarget = outputRotation * 2
     
     local delta = ((target - lastTarget + 1) % 2) - 1
 
-    if delta > 0.5 then
-        delta = delta - 1
-        speed = -speed
-    elseif delta < -0.5 then
-        delta = delta + 1
-        speed = -speed
+    if doWheelReverse == true then
+        if delta > 0.5 then
+            delta = delta - 1
+            speed = -speed
+        elseif delta < -0.5 then
+            delta = delta + 1
+            speed = -speed
+        end
+    else 
+     speed = math.abs(speed)
     end
     
     local optimizedTarget = lastTarget + delta
