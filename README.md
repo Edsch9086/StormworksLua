@@ -41,4 +41,3 @@ Current projects that are being worked on/are planned to be worked on are:
     - All I ask is that if you decide to use some of this in one of your projects, please credit me.
 
 ![soggy](https://soggy.cat/static/ssoggycat/main/images/soggycat.webp)
-
