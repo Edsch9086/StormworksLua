@@ -40,5 +40,5 @@ Current projects that are being worked on/are planned to be worked on are:
 - All code here is technically licensed under the GNU GPL 3.0 License, however i will not uphold that.
     - All I ask is that if you decide to use some of this in one of your projects, please credit me.
 
-![soggy](https://www.soggy.cat)
+![soggy](https://soggy.cat/static/ssoggycat/main/images/soggycat.webp)
 
