@@ -14,9 +14,16 @@
     5. wheel brake
 
 ### - efficient for 3-dof movement
-- turn wheels to target via the shortest path possible
 
-- reverse wheel speed if needed 
+- optimized
+    - turn wheels to target via the shortest path possible
+    - reverse wheel rotation if needed 
+    > note: can change this in config for asymetrical wheel designs (see: [twerve](https://www.chiefdelphi.com/t/presenting-mk4t-the-latest-innovation-in-frc-drivetrains/477941))
+
+- simple to operate
+    - wasd and left/right for translation and rotation
+    - option for field or robot-centric drive
+
 
 ### - viable for use in stormworks
 - lightweight on resources

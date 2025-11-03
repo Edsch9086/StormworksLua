@@ -1,11 +1,13 @@
-## the goal here is to create a simple lua-based tank drive controller that does/is the following:
+## the goal here is to create a simple lua-based tank drive controller that is:
 
-### simple to set up / use
+### - simple to set up / use
 - no more than 9 i/o
     1. comp from seat
     2. comp from physics sensor
-    3/4. left and right clutch
-    5/6. left and right reverse gear
+    3. left clutch
+    4. right clutch
+    5. left reverse gear
+    6. right reverse gear
     7. engine throttle out
     8. engine rps in
     9. brake out
@@ -17,7 +19,7 @@
     - max engine rps
 
 
-### allows for efficient 2 dof movement with minimal thought
+### - efficient for 2-dof movement
 - movement properties
     - neutral steering
     - fast response time
