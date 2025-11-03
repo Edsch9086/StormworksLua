@@ -23,6 +23,7 @@
 - simple to operate
     - wasd and left/right for translation and rotation
     - option for field or robot-centric drive
+    - natural for anyone who has driven a holonomic drivebase before
 
 
 ### - viable for use in stormworks
