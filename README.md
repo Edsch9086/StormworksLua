@@ -30,17 +30,15 @@ Current projects that are being worked on/are planned to be worked on are:
 - This is going to go very, very slowly.
     - If you are anticipating things here, don't. 
     - I only work on this in my spare time.
+    - overambitious projects are my specialty :3
 
 - If you have questions/comments/concerns, feel free to contact me.
     - Best way: Discord; Potat9086
     - Worst way: Email; potat9086@gmail.com
     - Truly worst way: Carrier pigeon or message in a bottle
 
-- All code here is licensed under the GNU GPL 3.0 License. This means that you can:
-    - You can copy, modify, and redistrubute this code HOWEVER:
-        - You MUST publish it under the GNU GPL 3.0 license AND credit me/link to the source code.
-    - I will note be held accountable for any damages (however unlikley they might be, this is stormworks we are talking about here)
-    - The code is not guaranteed to work, and is provided as-is without warranty.
+- All code here is technically licensed under the GNU GPL 3.0 License, however i will not uphold that.
+    - All I ask is that if you decide to use some of this in one of your projects, please credit me.
 
 
 
