@@ -1,6 +1,6 @@
-the goal here was to create a lua-based swerve drive system that can:
+## the goal here was to create a lua-based swerve drive system that is:
 
-## H2 - be easy to configure
+### - easy to configure
 - 1 mcu, > 6 i/o connections
     1. comp from seat
     2. comp from physics sensor
@@ -13,11 +13,12 @@ the goal here was to create a lua-based swerve drive system that can:
     4. motor speed out
     5. wheel brake
 
-- allow for efficient 3-dof movement
-> turn wheels to target via the shortest path possible
-> reverse wheel speed if needed 
-    - be able to toggle this if needed (i.e. twerve drive/asymmetrical wheels)
+### - efficient for 3-dof movement
+- turn wheels to target via the shortest path possible
 
+- reverse wheel speed if needed 
+
+### - viable for use in stormworks
 - be lightweight on resources
 
 - be polished enough to upld to steam workshop
