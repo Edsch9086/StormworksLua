@@ -13,7 +13,7 @@ Current projects that are being worked on/are planned to be worked on are:
     - nearly done, need to iron out waypoint logic
 
 - Tank Drive Controller
-    - nowhere near done
+    - nearly done, need to add speed/rot limiters + advanced stab
 
 - Typical wheeled vehicle controller
     - not started yet
