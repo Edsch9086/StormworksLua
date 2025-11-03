@@ -1,16 +1,17 @@
 the goal here was to create a lua-based swerve drive system that can:
 
-- be easy to configure
-> 1 mcu, > 6 i/o connections
-    - comp from seat
-    - comp from physics sensor
-    - comp from auton module
-    - comp to reader units/auton module
-> 4 reader modules, > 6 i/o connections
-    - pivot speed out
-    - current pivot speed in
-    - comp from mcu
-    - wheel brake
+## H2 - be easy to configure
+- 1 mcu, > 6 i/o connections
+    1. comp from seat
+    2. comp from physics sensor
+    3. comp from auton module
+    4. comp to reader units/auton module
+- 4 reader modules, > 6 i/o connections
+    1. comp from mcu
+    2. pivot speed out
+    3. current pivot speed in
+    4. motor speed out
+    5. wheel brake
 
 - allow for efficient 3-dof movement
 > turn wheels to target via the shortest path possible
@@ -19,4 +20,4 @@ the goal here was to create a lua-based swerve drive system that can:
 
 - be lightweight on resources
 
-- be polished enough to uplaod to steam workshop
+- be polished enough to upld to steam workshop
