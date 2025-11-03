@@ -25,6 +25,8 @@
     - fast response time
     - stable at high speeds 
 
+- handles naturally, as one would expect a tank drive to handle
+
 ### - be viable for use in stormworks
 - lightweight on resources
 
