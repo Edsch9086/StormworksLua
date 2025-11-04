@@ -5,18 +5,22 @@ function math.clamp(val, lower, upper)
     return math.min(math.max(val, lower), upper)
 end
 
+-- declare now to not waste time later
 targetBuffer = 0
 outputRotation = 0
 angleIncrement = 0
 
 function onTick()
+    -- get mcu inputs
     local speed = input.getNumber(module)
     local target = input.getNumber(module + 10) / 180
     local brake = input.getNumber(5)
     local lastTarget = outputRotation * 2
     
+    -- 
     local delta = ((target - lastTarget + 1) % 2) - 1
 
+    -- reverse the motor if the wheel is turning more than 180 degrees
     if doWheelReverse == true then
         if delta > 0.5 then
             delta = delta - 1
