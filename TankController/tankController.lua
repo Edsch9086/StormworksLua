@@ -25,27 +25,32 @@ function onTick()
     local lClutch = 0
     local engine = 0
 
+    -- initial track speed
     local leftSpeed = throttle + steer
     local rightSpeed = throttle - steer
 
-    local max_speed_abs = math.max(math.abs(leftSpeed), math.abs(rightSpeed))
-    engine = max_speed_abs
+    -- engine speed
+    local engine = math.max(math.abs(leftSpeed), math.abs(rightSpeed))
     
+    -- reverse gearbox if track speed is reverse
     lReverse = (leftSpeed < 0)
     rReverse = (rightSpeed < 0)
     
-    if max_speed_abs > 0.01 then
-        lClutch = math.abs(leftSpeed) / max_speed_abs
-        rClutch = math.abs(rightSpeed) / max_speed_abs
+    -- clutch slipping logic
+    if engine > 0.01 then
+        lClutch = math.abs(leftSpeed) / engine
+        rClutch = math.abs(rightSpeed) / engine
     else
         lClutch = 0.0
         rClutch = 0.0
     end
     
+    -- clamp just in case
     lClutch = clamp(lClutch, 0.0, 1.0)
     rClutch = clamp(rClutch, 0.0, 1.0)
     
-    if math.abs(angVel) > angVelLimiter then
+    -- highly experimental code for linear/rotation speed limit
+    --[[ if math.abs(angVel) > angVelLimiter then
         lClutch = 0.0
         rClutch = 0.0
     end
@@ -53,26 +58,28 @@ function onTick()
     if math.abs(linVel) > maxSpeed then
         lClutch = 0.0
         rClutch = 0.0
-    end
+    end ]]
     
+    -- 0 - 1.0 or 0 - engineRPS output (output to external speed controller/use internal jet controller)
     if outputType == false then
         engine = clamp(engine, 0.0, 1.0)
     else
-        engine = clamp(engine, 0.0, 1.0) -- keep between 0 and 1 for now, multiply later
+        engine = clamp(engine, 0.0, 1.0)
         engine = engine * engineRPS
     end
     
+    -- brake logic
     if brakeInput then
         brake = true
-        engine = 0.0
         lClutch = 0.0
         rClutch = 0.0
     end
  
+    -- encode outputs
     output.setBool(1, brake)
     output.setBool(2, rReverse)
     output.setBool(3, lReverse)
     output.setNumber(1, rClutch)
     output.setNumber(2, lClutch)
-    output.setNumber(3, engine)
+    output.setNumber(3, engine) -- set different output types in mc or have 2 different mcs for jet/other power
 end
