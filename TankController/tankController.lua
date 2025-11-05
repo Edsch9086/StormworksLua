@@ -67,7 +67,7 @@ function onTick()
         rClutch = 0.0
     end
     
-    if math.abs(linVel) > maxSpeed then
+    if math.abs(linVel) > maxSpeed then -- problem i see here is loss of controll on downhill
         lClutch = 0.0
         rClutch = 0.0
     end ]]
