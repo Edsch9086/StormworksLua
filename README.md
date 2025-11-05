@@ -19,7 +19,7 @@ Current projects that are being worked on/are planned to be worked on are:
     - not started yet
 
 - Waterjet Controller
-    - not started yet
+    - early stages of progress
 
 - 6-Axis Arm Controller
     - not started yet
