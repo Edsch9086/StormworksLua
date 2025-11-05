@@ -18,7 +18,6 @@
   - max rotation velocity (rads/second)
   - max engine rps
 
-
 ### - efficient for 2-dof movement
 
 - movement properties
@@ -34,3 +33,5 @@
 - lightweight on resources
 
 - polished enough to upload to steam workshop
+
+- centralised logic block for easy repairability
