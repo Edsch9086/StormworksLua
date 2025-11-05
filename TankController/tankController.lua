@@ -3,8 +3,14 @@ local angVelLimiter = property.getNumber("Rotation Speed Limit") -- rad/s
 local maxSpeed = property.getNumber("Max Speed") -- m/s
 local outputType = property.getBool("Engine Out Type") -- rps val = true, 0-1 throttle = false
 
+-- cache math functions to locals for faster access in onTick
+local math_abs = math.abs
+local math_max = math.max
+local math_min = math.min
+
 local function clamp(val, min_val, max_val)
-    return math.max(min_val, math.min(max_val, val))
+    -- use localized math functions
+    return math_max(min_val, math_min(max_val, val))
 end
 
 function onTick()
@@ -29,25 +35,31 @@ function onTick()
     local leftSpeed = throttle + steer
     local rightSpeed = throttle - steer
 
-    -- engine speed
-    local engine = math.max(math.abs(leftSpeed), math.abs(rightSpeed))
-    
+    -- engine speed (use localized math functions and avoid double abs calls)
+    local leftAbs = math_abs(leftSpeed)
+    local rightAbs = math_abs(rightSpeed)
+    if leftAbs > rightAbs then
+        engine = leftAbs
+    else
+        engine = rightAbs
+    end
+
     -- reverse gearbox if track speed is reverse
     lReverse = (leftSpeed < 0)
     rReverse = (rightSpeed < 0)
-    
-    -- clutch slipping logic
+
+    -- clutch slipping logic: avoid division when engine is effectively zero
     if engine > 0.01 then
-        lClutch = math.abs(leftSpeed) / engine
-        rClutch = math.abs(rightSpeed) / engine
+        lClutch = leftAbs / engine
+        rClutch = rightAbs / engine
     else
         lClutch = 0.0
         rClutch = 0.0
     end
-    
-    -- clamp just in case
-    lClutch = clamp(lClutch, 0.0, 1.0)
-    rClutch = clamp(rClutch, 0.0, 1.0)
+
+    -- cheap clamp without function call (fewer math ops)
+    if lClutch < 0.0 then lClutch = 0.0 elseif lClutch > 1.0 then lClutch = 1.0 end
+    if rClutch < 0.0 then rClutch = 0.0 elseif rClutch > 1.0 then rClutch = 1.0 end
     
     -- highly experimental code for linear/rotation speed limit
     --[[ if math.abs(angVel) > angVelLimiter then
