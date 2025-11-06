@@ -17,7 +17,7 @@ function onTick()
     local delta = ((target - lastTarget + 1) % 2) - 1
     
     -- motor reverse optimise
-    if doWheelReverse == true then -- reverse motor if rotation > 180 degrees
+    if doWheelReverse then -- reverse motor if rotation > 180 degrees
         if delta > 0.5 then
             delta = delta - 1
             speed = -speed

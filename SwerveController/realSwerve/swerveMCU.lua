@@ -39,7 +39,7 @@ function onTick()
     local wpAchv = false
     
 	-- world/field centric control
-    if worldCentric == true then 
+    if worldCentric then 
 		xVel, yVel = orient(xDir, yDir, worldYaw, resetGyro)
     else 
         xVel = xDir
@@ -47,7 +47,7 @@ function onTick()
     end
 
     -- brake when input released if coast mode inactive
-    if modeCoast == false then 
+    if not modeCoast then 
         if math.abs(xVel) <= 0.1 and math.abs(yVel) <= 0.1 and math.abs(input.getNumber(3)) <= 0.1 then
             brake = 1
         else 
@@ -57,12 +57,12 @@ function onTick()
 	
 	-- rotate to aim at point
 	local brake = 0
-	if aimAtCoord == true then 
+	if aimAtCoord then 
    	 rotation, brake = calcAim(worldX, worldY, worldYaw, reqX, reqY)
 	end
 	
 	-- translate to point
-	if moveConfirm == true then
+	if moveConfirm then
 	    xVel, yVel, brake, wpAchv = TRANS(worldX, worldY, worldYaw, reqX, reqY, worldCentric)
 	end
 
@@ -89,9 +89,9 @@ function onTick()
 
 
 	-- brakes (including wheel X lockup)
-	if softBrake == true then -- wheel brake only
+	if softBrake then -- wheel brake only
 		brake = 1
-	elseif hardBrake == true then -- wheel brake, plus all wheels inward (not to chassis centre)
+	elseif hardBrake then -- wheel brake, plus all wheels inward (not to chassis centre)
 		brake = 1
 		a1 = 225 -- front right
 		a2 = 135 -- front left
